@@ -15,14 +15,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-      //  $this->call(SeederPlan::class);
-     //   $this->call(SeederCategory::class);
+        User::factory()->count(100)->country()->geo()->plan()->create();
 
-     //   $this->call(SeederBreed::class);
+        Pet::factory(1000)->user()->breeder()->create();
+
+        $this->call(SeederPlan::class);
+        $this->call(SeederCategory::class);
+
+        //$this->call(SeederBreed::class);
         $this->call(SeederUser::class);
-
-      //  User::factory()->count(100)->country()->geo()->plan()->create();
-
-      //  Pet::factory(1000)->user()->breeder()->create();
     }
 }
