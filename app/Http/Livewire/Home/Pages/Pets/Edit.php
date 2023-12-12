@@ -108,12 +108,12 @@ class Edit extends Component
         'pet.color'    => ['required'],
         'pet.keywords' => ['required'],
         'pet.pt'       => ['required'],
-        'pet.price'    => ['required' , 'numeric'],
-        'pet.price_breeding'    => ['required' , 'numeric'],
+        'pet.price'    => ['required', 'numeric'],
+        'pet.price_breeding'    => ['required', 'numeric'],
         'pet.cb' => ['nullable'],
         'pet.pedigree' => ['nullable'],
         'pet.ns' => ['nullable'],
-        'pet.description' => ['nullable' , 'string', 'max:2000'],
+        'pet.description' => ['nullable', 'string', 'max:2000'],
 
         'shipping.shipping_fee'         => ['nullable'],
         'shipping.shipping_price'       => ['nullable'],
@@ -168,7 +168,7 @@ class Edit extends Component
 
     public function updatedPhotos($photos)
     {
-       $this->pet->clearMediaCollection('photos');
+        // $this->pet->clearMediaCollection('photos');
 
         foreach ($photos as $photo) {
             $this->pet->addMediaFromStream($photo->get())
@@ -179,6 +179,13 @@ class Edit extends Component
         $this->dispatchBrowserEvent('reInitGallery');
     }
 
+    public function deleteImg($id)
+    {
+
+        $this->pet->deleteMedia($id);
+        $this->dispatchBrowserEvent('toast-success', ['message' =>  __('Photo deleted!')]);
+        //  $this->pet->clearMediaCollection('photo');
+    }
 
     public function save()
     {
@@ -189,24 +196,24 @@ class Edit extends Component
 
         $this->pet->update($this->pet->toArray());
 
-        if (! is_null($this->shipping)) {
+        if (!is_null($this->shipping)) {
 
-            if (! empty($this->shipping['shipping_fee'])) {
+            if (!empty($this->shipping['shipping_fee'])) {
                 $this->validate([
-                    'shipping.shipping_price' => ['required' , 'numeric' , 'min:10', 'between:10,100000']
+                    'shipping.shipping_price' => ['required', 'numeric', 'min:10', 'between:10,100000']
                 ]);
             }
 
-            $this->pet->shipping()->updateOrCreate(['pet_id' => $this->pet->id] , $this->shipping);
+            $this->pet->shipping()->updateOrCreate(['pet_id' => $this->pet->id], $this->shipping);
         }
 
-        if (! is_null($this->vactinations)) {
+        if (!is_null($this->vactinations)) {
 
-            $this->pet->vactinations()->updateOrCreate(['pet_id' => $this->pet->id] , $this->vactinations);
+            $this->pet->vactinations()->updateOrCreate(['pet_id' => $this->pet->id], $this->vactinations);
         }
 
-        if (! is_null($this->certifications)) {
-            $this->pet->certifications()->updateOrCreate(['pet_id' => $this->pet->id] , $this->certifications);
+        if (!is_null($this->certifications)) {
+            $this->pet->certifications()->updateOrCreate(['pet_id' => $this->pet->id], $this->certifications);
         }
 
         return redirect()->route('dashboard.listing');

@@ -109,7 +109,7 @@ class Add extends Component
         $listingsCount = auth()->user()->pets->count();
 
         if ($listingsCount >= auth()->user()->plan->feature->limit) {
-            $this->dispatchBrowserEvent('toast-error' , ['type' => 'error' , 'message' => __('Unfortunately we can\'t create your new ad because you have exceeded the limit, please upgrade your data plan') ]);
+            $this->dispatchBrowserEvent('toast-error', ['type' => 'error', 'message' => __('Unfortunately we can\'t create your new ad because you have exceeded the limit, please upgrade your data plan')]);
             return false;
         }
 
@@ -124,7 +124,7 @@ class Add extends Component
             'pet.pt' => 'nullable',
             'pet.price' => 'required|numeric|max:1000000',
             'pet.price_breeding' => 'required|numeric|max:1000000',
-            'pet.description' => ['nullable' , 'string', 'max:2000'],
+            'pet.description' => ['nullable', 'string', 'max:2000'],
 
             'pet.cb' => 'nullable',
             'pet.pedigree' => 'nullable',
@@ -153,7 +153,10 @@ class Add extends Component
 
         $petPrepare = collect($validation['pet'])->merge(['expired_at' => $daysLong])->toArray();
 
+
         $pet = auth()->user()->pets()->create($petPrepare);
+
+
 
         if (isset($this->photo) && count($this->photo) > 0) {
             $pet->addMediaFromStream($this->photo[0]->get())
@@ -171,9 +174,9 @@ class Add extends Component
 
         // relations options
 
-        if (! empty($this->shipping['shipping_fee'])) {
+        if (!empty($this->shipping['shipping_fee'])) {
             $this->validate([
-                'shipping.shipping_price' => ['required' , 'numeric' , 'min:10', 'between:10,100000']
+                'shipping.shipping_price' => ['required', 'numeric', 'min:10', 'between:10,100000']
             ]);
             $this->shipping['shipping_destination'] = false;
         } else {
@@ -187,7 +190,6 @@ class Add extends Component
         $pet->certifications()->create($this->certifications);
 
         return redirect()->route('dashboard.listing');
-
     }
 
 
