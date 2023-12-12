@@ -1,0 +1,92 @@
+@import "css/bootstrap.min.css";
+@import "css/line-awesome.min.css";
+@import "css/owl.carousel.min.css";
+@import "css/owl.theme.default.min.css";
+@import "css/animated-headline.css";
+@import "css/jquery-ui.css";
+@import "css/jquery.fancybox.css";
+@import "css/chosen.min.css";
+
+.shield-user {
+    position: absolute;
+    left: 260px;
+    top: -23px;
+}
+
+// variable scss
+@import "partials/variables";
+
+// mixin scss
+@import "partials/mixins";
+@import "partials/keyframes";
+// common scss
+@import "partials/common";
+// button scss
+@import "partials/button";
+// general scss
+@import "partials/general";
+// icons scss
+@import "partials/icons";
+// breeder scss
+@import "partials/contact";
+// blockquote scss
+@import "partials/blockquote";
+// breadcrumb scss
+@import "partials/breadcrumb";
+// menu scss
+@import "partials/menu";
+// modal scss
+@import "partials/modal";
+// collapse scss
+@import "partials/collapse";
+// pricing scss
+@import "partials/pricing";
+// about scss
+@import "partials/about";
+// faq scss
+@import "partials/faq";
+// hero scss
+@import "partials/hero";
+// how-it-work scss
+@import "partials/how-it-work";
+// cards scss
+@import "partials/cards";
+// blog scss
+@import "partials/blog";
+// counter scss
+@import "partials/counter";
+// category scss
+@import "partials/category";
+// call-to-action scss
+@import "partials/call-to-action";
+// dashboard scss
+@import "partials/dashboard";
+// clientlogo scss
+@import "partials/clientlogo";
+// comment scss
+@import "partials/comment";
+// info-box scss
+@import "partials/info-box";
+// rating scss
+@import "partials/rating";
+// tab scss
+@import "partials/tab";
+// particles scss
+@import "partials/particles";
+// file-upload scss
+@import "partials/file-upload";
+// testimonial scss
+@import "partials/testimonial";
+// author scss
+@import "partials/author";
+// google-map scss
+@import "partials/google-map";
+// tags scss
+@import "partials/tags";
+// sidebar scss
+@import "partials/sidebar";
+// listing-detail scss
+@import "partials/listing-detail";
+
+// footer scss
+@import "partials/footer";

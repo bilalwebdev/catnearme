@@ -1,0 +1,18 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{REQUEST_URI} !^public
+    RewriteRule ^(.*)$ public/$1 [L]
+
+    # Check if the request is not using port 8000
+    RewriteCond %{SERVER_PORT} !^8000$
+
+    # Check if the request is not using HTTPS
+    RewriteCond %{HTTPS} off
+
+    # Redirect to the same URI using the captured domain and protocol from HTTP_HOST and HTTPS
+    RewriteRule ^ http://%{HTTP_HOST}:8000%{REQUEST_URI} [L,R=301]
+
+    # If using HTTPS, redirect to the same URI using the captured domain and protocol from HTTP_HOST and HTTPS
+    RewriteCond %{HTTPS} on
+    RewriteRule ^ https://%{HTTP_HOST}:8000%{REQUEST_URI} [L,R=301]
+</IfModule>
