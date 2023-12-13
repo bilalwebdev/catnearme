@@ -124,18 +124,15 @@
 
                                         <div
                                             class="d-flex flex-column box gap-3  justify-content-center align-items-center">
-                                            <button type="button" class="delete" ng-click="deleteModel(model)">
-                                                <span>&times;</span>
-                                            </button>
-                                            <div class="image"></div>
-                                            <img src="{{ $pet->getFirstMediaUrl('photo', 'thumb') }}"
-                                                class="rounded p-1" alt="">
-                                            {{-- @if (isset($pet->getFirstMedia('photo')->id))
-                                                <div class="btn-sm btn-danger"
-                                                    wire:click="deleteImg({{ $pet->getFirstMedia('photo')->id ?? '' }})">
-                                                    <i class="la la-remove"></i>
-                                                </div>
-                                            @endif --}}
+
+                                            <div class="img-wrap">
+                                                @if ($pet->getFirstMedia('photo'))
+                                                    <span class="close-img" style=""
+                                                        wire:click="deleteImg({{ $pet->getFirstMedia('photo')->id ?? '' }})">&times;</span>
+                                                @endif
+                                                <img src="{{ $pet->getFirstMediaUrl('photo', 'thumb') }}"
+                                                    class="" alt="" style="border-radius: 5px">
+                                            </div>
 
                                         </div>
 
@@ -156,20 +153,21 @@
                                             @foreach ($pet->getMedia('photos') as $imageGallery)
                                                 <div
                                                     class="d-flex flex-column   justify-content-center align-items-center">
-                                                    <a href="{{ $imageGallery->getUrl('thumb') }}"
-                                                        class="fs-slider-item d-block mr-2 p-1"
-                                                        data-fancybox="gallery"
-                                                        data-caption="Pet Breeder - {{ $pet->title }}">
-                                                        <img src="{{ $imageGallery->getUrl('gallery') }}"
-                                                            alt="single listing image " width="200"
-                                                            class="">
-                                                    </a><!-- end fs-slider-item -->
-                                                    @if (isset($imageGallery->id))
-                                                        <div class="btn-sm btn-danger"
-                                                            wire:click="deleteImg({{ $imageGallery->id ?? '' }})">
-                                                            <i class="la la-remove"></i>
-                                                        </div>
-                                                    @endif
+                                                    <div class="img-wrap">
+                                                        <span class="close-img"
+                                                            wire:click="deleteImg({{ $imageGallery->id ?? '' }})"
+                                                            style="right: -1px; top: -6px">&times;</span>
+                                                        <a href="{{ $imageGallery->getUrl('thumb') }}"
+                                                            class="fs-slider-item d-block mr-2 p-1"
+                                                            data-fancybox="gallery"
+                                                            data-caption="Pet Breeder - {{ $pet->title }}">
+
+                                                            <img src="{{ $imageGallery->getUrl('gallery') }}"
+                                                                alt="single listing image " width="200"
+                                                                class="" style="border-radius: 5px">
+
+                                                        </a><!-- end fs-slider-item -->
+                                                    </div>
                                                 </div>
                                             @endforeach
                                         </div>
@@ -359,66 +357,45 @@
 
     @push('styles')
         <style>
-            .delete {
-                cursor: pointer !important;
-                font-size: 30px;
-                position: absolute;
-                color: white;
-                border: none;
-                background: none;
-                right: -15px;
-                top: -15px;
-                line-height: 1;
-                z-index: 99;
-                padding: 0;
+            .img-wrap {
+                position: relative;
+                ...
             }
 
-            .delete span {
-                height: 30px;
-                width: 30px;
-                background-color: black;
+            .img-wrap .close-img {
+
+                position: absolute;
+                top: -12px;
+                right: -10px;
+                z-index: 100;
+                width: 28px;
+                height: 28px;
+                background: #555;
+                /* text-align: center; */
                 border-radius: 50%;
-                display: block;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                padding-bottom: 6px;
+                color: #fff;
+                font-weight: 400;
+                opacity: 1;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(0, 0, 0, 0.3);
+                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+                -webkit-transition: background 0.5s;
+                transition: background 0.5s;
+                border: 3px solid #fff;
+                color: #FFF;
+                cursor: pointer;
+
+                ...
             }
 
-            .box {
-                width: calc((100% - 30px) * 0.333);
-                margin: 5px;
-                height: 250px;
-                background: #CCCCCC;
-                float: left;
-                box-sizing: border-box;
-                position: relative;
-                box-shadow: 0 0 5px 2px rgba(0, 0, 0, .15);
-            }
+            .close-img:hover {
+                background: #E54E4E;
 
-            .box:hover {
-                box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.5);
-            }
 
-            .box .image {
-                width: 100%;
-                height: 100%;
-                position: relative;
-                overflow: hidden;
-            }
-
-            .box .image img {
-                width: 100%;
-                min-height: 100%;
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                -ms-transform: translate(-50%, -50%);
-                -webkit-transform: translate(-50%, -50%);
-            }
-
-            @media (max-width: 600px) {
-                .box {
-                    width: calc((100% - 20px) * 0.5);
-                    height: 200px;
-                }
             }
         </style>
     @endpush
