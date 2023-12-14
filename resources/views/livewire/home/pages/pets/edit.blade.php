@@ -1,14 +1,14 @@
 <div>
     <livewire:home.headers.black />
 
-    <section class="breadcrumb-area bread-bg-2 bread-overlay overflow-hidden"
+    <section class="overflow-hidden breadcrumb-area bread-bg-2 bread-overlay"
         style="background-image: url('{{ Vite::asset('resources/images/banners/pets_add.png') }}');  background-position: 25% 40%">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between">
+                    <div class="flex-wrap breadcrumb-content d-flex align-items-center justify-content-between">
                         <div class="section-heading">
-                            <h2 class="sec__title text-white font-size-40 mb-0">{{ __('Edit post') }}</h2>
+                            <h2 class="mb-0 text-white sec__title font-size-40">{{ __('Edit post') }}</h2>
                         </div>
                         {{ Breadcrumbs::view('partials/breadcrumbs-list', 'edit-post', $pet) }}
                     </div><!-- end breadcrumb-content -->
@@ -36,7 +36,7 @@
     <section class="add-listing-area section-padding">
         <div class="container">
             <div class="row">
-                <div class="col-lg-10 mx-auto">
+                <div class="mx-auto col-lg-10">
                     @guest
                         <div class="alert alert-info font-size-15 text-color" role="alert">
                             <span class="font-weight-semi-bold">If you have an account</span>
@@ -49,7 +49,7 @@
                     @endguest
 
                     <div>
-                        <div class="block-card mb-4">
+                        <div class="mb-4 block-card">
                             <div class="block-card-header">
                                 <h2 class="widget-title">General Information</h2>
                                 <div class="stroke-shape"></div>
@@ -115,15 +115,15 @@
                                     <div class="col-md-12">
                                         <hr>
                                         <label class="label-text">Add Background Photos</label>
-                                        <div class="file-upload-wrap file-upload-wrap-2 mb-2" wire:ignore>
+                                        <div class="mb-2 file-upload-wrap file-upload-wrap-2" wire:ignore>
                                             <input type="file" name="files[]"
                                                 class="multi file-upload-input with-preview" wire:model="photo">
                                             <span class="file-upload-text"><i
-                                                    class="la la-photo mr-2"></i>Choose</span>
+                                                    class="mr-2 la la-photo"></i>Choose</span>
                                         </div><!-- file-upload-wrap -->
 
                                         <div
-                                            class="d-flex flex-column box gap-3  justify-content-center align-items-center">
+                                            class="gap-3 d-flex flex-column box justify-content-center align-items-center">
 
                                             <div class="img-wrap">
                                                 @if ($pet->getFirstMedia('photo'))
@@ -140,25 +140,25 @@
                                         <hr>
 
                                         <label class="label-text">Add Pet Photos</label>
-                                        <div class="file-upload-wrap file-upload-wrap-2 mb-2" wire:ignore>
+                                        <div class="mb-2 file-upload-wrap file-upload-wrap-2" wire:ignore>
                                             <input type="file" name="files[]"
                                                 class="multi file-upload-input with-preview" multiple
                                                 wire:model="photos">
                                             <span class="file-upload-text"><i
-                                                    class="la la-photo mr-2"></i>Choose</span>
+                                                    class="mr-2 la la-photo"></i>Choose</span>
                                         </div><!-- file-upload-wrap -->
 
-                                        <div class="d-flex gap-4 owl-trigger-action owl-trigger-action-2">
+                                        <div class="gap-4 d-flex owl-trigger-action owl-trigger-action-2">
 
                                             @foreach ($pet->getMedia('photos') as $imageGallery)
                                                 <div
-                                                    class="d-flex flex-column   justify-content-center align-items-center">
+                                                    class="d-flex flex-column justify-content-center align-items-center">
                                                     <div class="img-wrap">
                                                         <span class="close-img"
                                                             wire:click="deleteImg({{ $imageGallery->id ?? '' }})"
                                                             style="right: -1px; top: -6px">&times;</span>
                                                         <a href="{{ $imageGallery->getUrl('thumb') }}"
-                                                            class="fs-slider-item d-block mr-2 p-1"
+                                                            class="p-1 mr-2 fs-slider-item d-block"
                                                             data-fancybox="gallery"
                                                             data-caption="Pet Breeder - {{ $pet->title }}">
 
@@ -178,7 +178,7 @@
                             </div><!-- end block-card-body -->
                         </div><!-- end block-card -->
 
-                        <div class="block-card mb-4">
+                        <div class="mb-4 block-card">
                             <div class="block-card-header">
                                 <h2 class="widget-title">Shipping</h2>
                                 <div class="stroke-shape"></div>
@@ -200,7 +200,7 @@
                                 </div>
                             </div><!-- end block-card-body -->
                         </div><!-- end block-card -->
-                        <div class="block-card mb-4">
+                        <div class="mb-4 block-card">
                             <div class="block-card-header">
                                 <h2 class="widget-title">Vaccinations</h2>
                                 <div class="stroke-shape"></div>
@@ -245,7 +245,7 @@
                                 </div>
                             </div><!-- end block-card-body -->
                         </div><!-- end block-card -->
-                        <div class="block-card mb-4">
+                        <div class="mb-4 block-card">
                             <div class="block-card-header">
                                 <h2 class="widget-title">Certification and Documentation</h2>
                                 <div class="stroke-shape"></div>
@@ -296,12 +296,12 @@
                             </div><!-- end block-card-body -->
                         </div><!-- end block-card -->
 
-                        <div class="block-card mb-4">
+                        <div class="mb-4 block-card">
                             <div class="block-card-header">
                                 <div class="d-flex justify-content-between">
                                     <h2 class="widget-title">Family</h2>
                                     <a href="{{ route('dashboard.parents.add') }}"
-                                        class="theme-btn download-btn mr-2 bg-1 text-white hover-scale-2 mb-2">
+                                        class="mb-2 mr-2 text-white theme-btn download-btn bg-1 hover-scale-2">
                                         Add Parent
                                     </a>
                                 </div>
@@ -312,9 +312,9 @@
                                     <div class="col-lg-12">
                                         <div class="row">
 
-                                            <div class="col-lg-12 mb-3">
+                                            <div class="mb-3 col-lg-12">
                                                 <h3 class="mb-3">Parents</h3>
-                                                <div class="stroke-shape mb-3"></div>
+                                                <div class="mb-3 stroke-shape"></div>
 
                                                 <div class="full-screen-slider owl-trigger-action owl-trigger-action-2"
                                                     wire:ignore>
@@ -322,7 +322,7 @@
                                                     @foreach ($pet->parents as $parent)
                                                         <div class="d-flex flex-column">
                                                             <a href="{{ route('dashboard.parents.edit', $parent->family) }}"
-                                                                class="d-block mr-3">
+                                                                class="mr-3 d-block">
                                                                 <img src="{{ $parent->family->getFirstMediaUrl('photo', 'thumb') }}"
                                                                     alt="parent - {{ $parent->family->name }}"
                                                                     width="250">
@@ -345,7 +345,7 @@
 
                         <div class="btn-box">
                             <button type="button" wire:loading.attr="disabled"
-                                class="theme-btn gradient-btn border-0" wire:click="save">
+                                class="border-0 theme-btn gradient-btn" wire:click="save">
                                 Edit post
                             </button>
                         </div>
