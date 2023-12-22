@@ -14,7 +14,7 @@ class Edit extends Component
 {
     use WithFileUploads, SEOTools;
 
-    protected $listeners = ['updateForm' => 'render'];
+    //   protected $listeners = ['updateForm' => 'render'];
 
     public Pet $pet;
 
@@ -53,6 +53,8 @@ class Edit extends Component
         ];
     }
 
+
+    protected $listeners = ['reset' => '$refresh'];
 
     public function updatedShippingShippingFee($val)
     {
@@ -156,6 +158,7 @@ class Edit extends Component
         $this->pet->addMediaFromStream($photo->get())
             ->usingFileName($photo->getClientOriginalName())
             ->toMediaCollection('photo');
+        $this->emit('reset');
     }
 
     /**
@@ -175,6 +178,7 @@ class Edit extends Component
                 ->usingFileName($photo->getClientOriginalName())
                 ->toMediaCollection('photos');
         }
+        $this->emit('reset');
 
         $this->dispatchBrowserEvent('reInitGallery');
     }
@@ -184,7 +188,7 @@ class Edit extends Component
 
         $this->pet->deleteMedia($id);
         $this->dispatchBrowserEvent('toast-success', ['message' =>  __('Photo deleted!')]);
-        //  $this->pet->clearMediaCollection('photo');
+        $this->emit('reset');
     }
 
     public function save()
