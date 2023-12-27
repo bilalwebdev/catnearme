@@ -14,7 +14,8 @@ class Edit extends Component
 {
     use WithFileUploads, SEOTools;
 
-    //   protected $listeners = ['updateForm' => 'render'];
+    // protected $listeners = ['updateForm' => 'render'];
+    protected $listeners = ['reset' => '$refresh'];
 
     public Pet $pet;
 
@@ -52,9 +53,6 @@ class Edit extends Component
             'shipping.shipping_price.between' => ('The shipping cost should be between 10 - 100 000'),
         ];
     }
-
-
-    protected $listeners = ['reset' => '$refresh'];
 
     public function updatedShippingShippingFee($val)
     {
@@ -110,12 +108,12 @@ class Edit extends Component
         'pet.color'    => ['required'],
         'pet.keywords' => ['required'],
         'pet.pt'       => ['required'],
-        'pet.price'    => ['required', 'numeric'],
-        'pet.price_breeding'    => ['required', 'numeric'],
+        'pet.price'    => ['required' , 'numeric'],
+        'pet.price_breeding'    => ['required' , 'numeric'],
         'pet.cb' => ['nullable'],
         'pet.pedigree' => ['nullable'],
         'pet.ns' => ['nullable'],
-        'pet.description' => ['nullable', 'string', 'max:2000'],
+        'pet.description' => ['nullable' , 'string', 'max:2000'],
 
         'shipping.shipping_fee'         => ['nullable'],
         'shipping.shipping_price'       => ['nullable'],
@@ -158,7 +156,8 @@ class Edit extends Component
         $this->pet->addMediaFromStream($photo->get())
             ->usingFileName($photo->getClientOriginalName())
             ->toMediaCollection('photo');
-        $this->emit('reset');
+
+        $this->emit('reset');// Reset Livewire
     }
 
     /**
@@ -171,24 +170,24 @@ class Edit extends Component
 
     public function updatedPhotos($photos)
     {
-        // $this->pet->clearMediaCollection('photos');
+       // $this->pet->clearMediaCollection('photos');
 
         foreach ($photos as $photo) {
             $this->pet->addMediaFromStream($photo->get())
                 ->usingFileName($photo->getClientOriginalName())
                 ->toMediaCollection('photos');
         }
-        $this->emit('reset');
 
-        $this->dispatchBrowserEvent('reInitGallery');
+        $this->emit('reset');// Reset Livewire
+
+        $this->dispatchBrowserEvent('reInitGallery');// ReInit Gallery
     }
 
     public function deleteImg($id)
     {
-
         $this->pet->deleteMedia($id);
         $this->dispatchBrowserEvent('toast-success', ['message' =>  __('Photo deleted!')]);
-        $this->emit('reset');
+        $this->emit('reset');// Reset Livewire
     }
 
     public function save()
@@ -200,24 +199,24 @@ class Edit extends Component
 
         $this->pet->update($this->pet->toArray());
 
-        if (!is_null($this->shipping)) {
+        if (! is_null($this->shipping)) {
 
-            if (!empty($this->shipping['shipping_fee'])) {
+            if (! empty($this->shipping['shipping_fee'])) {
                 $this->validate([
-                    'shipping.shipping_price' => ['required', 'numeric', 'min:10', 'between:10,100000']
+                    'shipping.shipping_price' => ['required' , 'numeric' , 'min:10', 'between:10,100000']
                 ]);
             }
 
-            $this->pet->shipping()->updateOrCreate(['pet_id' => $this->pet->id], $this->shipping);
+            $this->pet->shipping()->updateOrCreate(['pet_id' => $this->pet->id] , $this->shipping);
         }
 
-        if (!is_null($this->vactinations)) {
+        if (! is_null($this->vactinations)) {
 
-            $this->pet->vactinations()->updateOrCreate(['pet_id' => $this->pet->id], $this->vactinations);
+            $this->pet->vactinations()->updateOrCreate(['pet_id' => $this->pet->id] , $this->vactinations);
         }
 
-        if (!is_null($this->certifications)) {
-            $this->pet->certifications()->updateOrCreate(['pet_id' => $this->pet->id], $this->certifications);
+        if (! is_null($this->certifications)) {
+            $this->pet->certifications()->updateOrCreate(['pet_id' => $this->pet->id] , $this->certifications);
         }
 
         return redirect()->route('dashboard.listing');

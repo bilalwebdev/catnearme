@@ -28,34 +28,34 @@ class SeederPlan extends Seeder
             'limit'     => 3
         ]);
 
-       $plan_15 =  Plan::create([
-            'title' => '15 Listings',
-            'name'  => '15_listing',
+       $plan_10 =  Plan::create([
+            'title' => '10 Listings',
+            'name'  => '10_listing',
             'price' => 15,
             'price_stripe' => 'price_1Ng457FJl3kFwAtVbXfEecLw',
             'period' => 'monthly'
         ]);
 
-        $plan_15->feature()->create([
-            'title'     => '15 Listings',
-            'name'      => '15_listings_limit',
+        $plan_10->feature()->create([
+            'title'     => '10 Listings',
+            'name'      => '10_listings_limit',
             'days_long' => 30,
-            'limit'     => 15
+            'limit'     => 10
         ]);
 
-        $plan_25 = Plan::create([
-            'title' => '25 Listings',
-            'name'  => '25_listing',
+        $plan_20 = Plan::create([
+            'title' => '20 Listings',
+            'name'  => '20_listing',
             'price' => 120,
             'price_stripe' => 'price_1Ng45oFJl3kFwAtVKdeCk0xM',
             'period' => 'yearly'
         ]);
 
-        $plan_25->feature()->create([
-            'title'     => '25 Listings',
-            'name'      => '25_listings_limit',
+        $plan_20->feature()->create([
+            'title'     => '20 Listings',
+            'name'      => '20_listings_limit',
             'days_long' => 60,
-            'limit'     => 25
+            'limit'     => 20
         ]);
     }
 }

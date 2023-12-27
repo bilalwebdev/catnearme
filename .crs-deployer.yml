@@ -1,8 +1,0 @@
-project: "CatNearMe Staging Website"
-branch: develop
-tg-access-token: "764727323:AAHPctBqi8KoN4xN2PHZDgHAj8Tt_AaHDMM"
-tg-chat-id: "3575989"
-sequence:
-  - "git pull"
-  - "/usr/bin/php8.2 artisan cache:refresh"
-  - "chown -R www-data:www-data /var/www/dev.catnear.me/"

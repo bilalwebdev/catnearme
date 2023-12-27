@@ -61,6 +61,11 @@ Route::prefix('/')->group(function () {
     });
 
     Route::prefix('profile')->group(function () {
+        // Route::get('/{breed}/{pet}', \App\Http\Livewire\Home\Pages\Listings\Show::class)->name('listings.showslug');
+        // route('listings.showslug', [$listing->breed->slug,$listing->slug])
+        // now: http://127.0.0.1:8000/profile/breeder/3
+        // should be: http://127.0.0.1:8000/profile/breeder/thieldannie
+        $nope = \App\Http\Livewire\Home\Pages\Listings\Show::class;
         Route::get('/breeder/{user}', \App\Http\Livewire\Home\User\Profile::class)->name('user.breeder.profile');
     });
 });

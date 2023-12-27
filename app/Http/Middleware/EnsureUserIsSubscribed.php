@@ -15,7 +15,7 @@ class EnsureUserIsSubscribed
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user() && ! $request->user()->subscribedToProduct('15_listing' , '25_listing')) {
+        if ($request->user() && ! $request->user()->subscribedToProduct('10_listing' , '20_listing')) {
             // This user is not a paying customer...
             return redirect('billing');
         }

@@ -573,6 +573,9 @@ body {
 .bg-3 {
   background-color: $color-5 !important;
 }
+.bg-spec {
+  background: linear-gradient(270deg,#ff5700,#fdb127);
+}
 .bg-4 {
   background-color: $color-6 !important;
 }
@@ -958,6 +961,12 @@ body {
 }
 .text-color-5 {
   color: $color-5 !important;
+}
+.text-color-gradient-1 {
+  background: linear-gradient(270deg, #ff5700, #fdb127);
+  background-clip: text;
+  -webkit-background-clip: text; /* For older browsers that require vendor prefix */
+  color: transparent;
 }
 .text-color-6 {
   color: $color-6 !important;

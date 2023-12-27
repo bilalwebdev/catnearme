@@ -501,6 +501,17 @@ namespace App\Models{
 	class Feature extends \Eloquent {}
 }
 
+namespace App\Models\Forum{
+/**
+ * App\Models\Forum\Posts
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Posts newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Posts newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Posts query()
+ */
+	class Posts extends \Eloquent {}
+}
+
 namespace App\Models{
 /**
  * App\Models\Page

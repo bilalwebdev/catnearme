@@ -36,20 +36,19 @@
     <section class="add-listing-area section-padding">
         <div class="container">
             <div class="row">
-                <div class="mx-auto col-lg-10">
+                <div class="col-lg-10 mx-auto">
                     @guest
                         <div class="alert alert-info font-size-15 text-color" role="alert">
                             <span class="font-weight-semi-bold">If you have an account</span>
                             <a href="#" class="alert-link text-color-2" data-toggle="modal"
-                                data-target="#loginModal">log
-                                in</a>
+                                data-target="#loginModal">log in</a>
                             log in, or <a href="#" class="alert-link text-color-2" data-toggle="modal"
                                 data-target="#signUpModal">create</a> an account to add a pet
                         </div><!-- alert -->
                     @endguest
 
                     <div>
-                        <div class="mb-4 block-card">
+                        <div class="block-card mb-4">
                             <div class="block-card-header">
                                 <h2 class="widget-title">General Information</h2>
                                 <div class="stroke-shape"></div>
@@ -148,7 +147,8 @@
                                                     class="mr-2 la la-photo"></i>Choose</span>
                                         </div><!-- file-upload-wrap -->
 
-                                        <div class="gap-4 d-flex owl-trigger-action owl-trigger-action-2">
+                                        <div class="gap-5 d-flex flex-wrap owl-trigger-action owl-trigger-action-2"
+                                            style="gap: 14px">
 
                                             @foreach ($pet->getMedia('photos') as $imageGallery)
                                                 <div
@@ -178,7 +178,7 @@
                             </div><!-- end block-card-body -->
                         </div><!-- end block-card -->
 
-                        <div class="mb-4 block-card">
+                        <div class="block-card mb-4">
                             <div class="block-card-header">
                                 <h2 class="widget-title">Shipping</h2>
                                 <div class="stroke-shape"></div>
@@ -200,7 +200,7 @@
                                 </div>
                             </div><!-- end block-card-body -->
                         </div><!-- end block-card -->
-                        <div class="mb-4 block-card">
+                        <div class="block-card mb-4">
                             <div class="block-card-header">
                                 <h2 class="widget-title">Vaccinations</h2>
                                 <div class="stroke-shape"></div>
@@ -245,7 +245,7 @@
                                 </div>
                             </div><!-- end block-card-body -->
                         </div><!-- end block-card -->
-                        <div class="mb-4 block-card">
+                        <div class="block-card mb-4">
                             <div class="block-card-header">
                                 <h2 class="widget-title">Certification and Documentation</h2>
                                 <div class="stroke-shape"></div>
@@ -296,12 +296,12 @@
                             </div><!-- end block-card-body -->
                         </div><!-- end block-card -->
 
-                        <div class="mb-4 block-card">
+                        <div class="block-card mb-4">
                             <div class="block-card-header">
                                 <div class="d-flex justify-content-between">
                                     <h2 class="widget-title">Family</h2>
                                     <a href="{{ route('dashboard.parents.add') }}"
-                                        class="mb-2 mr-2 text-white theme-btn download-btn bg-1 hover-scale-2">
+                                        class="theme-btn download-btn mr-2 bg-1 text-white hover-scale-2 mb-2">
                                         Add Parent
                                     </a>
                                 </div>
@@ -312,9 +312,9 @@
                                     <div class="col-lg-12">
                                         <div class="row">
 
-                                            <div class="mb-3 col-lg-12">
+                                            <div class="col-lg-12 mb-3">
                                                 <h3 class="mb-3">Parents</h3>
-                                                <div class="mb-3 stroke-shape"></div>
+                                                <div class="stroke-shape mb-3"></div>
 
                                                 <div class="full-screen-slider owl-trigger-action owl-trigger-action-2"
                                                     wire:ignore>
@@ -345,7 +345,7 @@
 
                         <div class="btn-box">
                             <button type="button" wire:loading.attr="disabled"
-                                class="border-0 theme-btn gradient-btn" wire:click="save">
+                                class="theme-btn gradient-btn border-0" wire:click="save">
                                 Edit post
                             </button>
                         </div>
@@ -359,11 +359,9 @@
         <style>
             .img-wrap {
                 position: relative;
-                ...
             }
 
             .img-wrap .close-img {
-
                 position: absolute;
                 top: -12px;
                 right: -10px;
@@ -386,16 +384,16 @@
                 -webkit-transition: background 0.5s;
                 transition: background 0.5s;
                 border: 3px solid #fff;
-                color: #FFF;
                 cursor: pointer;
-
-                ...
             }
 
             .close-img:hover {
                 background: #E54E4E;
+            }
 
-
+            .popular {
+                transform: scale(1.05);
+                box-shadow: 0 0 15px 0px #52555a;
             }
         </style>
     @endpush
