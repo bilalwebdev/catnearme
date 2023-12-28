@@ -137,8 +137,13 @@
 @push('styles')
     <style>
         .popular {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px 0px #52555a;
+            transform: scale(1.08);
+            box-shadow: 0 0 13px 0px #52555a;
+        }
+
+        .popular:hover {
+            transition: transform 150ms ease-in-out;
+            transform: scale(1.09);
         }
 
         .pricing-area .price-item.price-item-overlay {
@@ -146,12 +151,17 @@
             box-shadow: 1px -1px 11px -3px #52555a;
         }
 
+        .pricing-area .price-item.price-item-overlay:hover {
+            transition: transform 150ms ease-in-out;
+            transform: scale(1.02);
+        }
+
         .pricing-area .price-item.price-item-overlay::after {
             content: '';
             display: block;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(140, 137, 137, 0.1);
             position: absolute;
             top: 0;
             left: 0;
